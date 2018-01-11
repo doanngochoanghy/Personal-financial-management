@@ -91,6 +91,11 @@
 
 .divider-summary{
 	border:solid 1px gray;
-	margin-left: 25px;
+	/*margin-left: 25px;*/
 	margin-right: 25px;
+}
+.budget{
+	float: left;
+	text-align: left;
+	color: black;
 }

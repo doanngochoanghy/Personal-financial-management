@@ -20,84 +20,82 @@
 		</div>
 	</div>
 </div>
-<?php if ($data_income!=NULL||$data_expense!=NULL): ?>
-	
-
-	<div class="row two-chart-box">
-		<div class="col-md-6 income-chart-box">	
-			<h3 class="box-title">Income</h3>
-			<div id="income-donut-chart" style="height: 300px;"></div>
-			<!-- <?php var_dump($data_income); ?> -->
-			<div class="item-transaction row">
-
-				<?php $total=0; ?>
-				<?php foreach ($data_income as $income): ?>
-					<?php $total+=(int)$income['money']; ?>
-					<div class="item item-income row">
-						<div class="icon-item col-md-2 col-sm-2 col-xs-4">
-							<i class="fa <?php echo $income['icon']; ?>"></i>
-						</div>
-						<div class="cat-item col-md-5 col-sm-5 col-xs-8 row">
-							<div class="cat"><?php echo($income['category_name']); ?></div>
-							<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
-						</div>
-						<div class="money income col-md-5 col-sm-5 col-xs-12" ><?php echo (number_format($income['money'],0,",","."));?> đ</div>
-					</div>
-				<?php endforeach ?>
-
-				<div class="divider-summary"></div>
-				<div class="item item-expense row">
-					<div class="icon-item col-md-2 col-sm-2 col-xs-4">
-						<!-- <i class="fa fa-cutlery"></i> -->
-					</div>
-					<div class="cat-item col-md-5 col-sm-5 col-xs-8 row">
-						<div class="cat">Tổng cộng</div>
-						<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
-					</div>
-					<div class="money income col-md-5 col-sm-5 col-xs-12" ><?php echo (number_format($total,0,",","."));?> đ</div>
-				</div>
-				<!-- </a> -->
-			</div>
-		</div>
-		<div class="col-md-6 expense-chart-box">
-			<h3 class="box-title">Expense</h3>	
-			<div id="expense-donut-chart" style="height: 300px;"></div>
-			<div class="item-transaction row">
-				<?php $total=0; ?>
-				<?php foreach ($data_expense as $expense): ?>
-					<?php $total+=(int)$expense['money']; ?>
-					<div class="item item-expense row">
-						<div class="icon-item col-md-2 col-sm-2 col-xs-4">
-							<i class="fa <?php echo $expense['icon']; ?>"></i>
-						</div>
-						<div class="cat-item col-md-4 col-sm-4 col-xs-8 row">
-							<div class="cat"><?php echo($expense['category_name']); ?></div>
-							<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
-						</div>
-						<div class="money expense col-md-6 col-sm-6 col-xs-12" ><?php echo (number_format($expense['money'],0,",","."));?> đ</div>
-					</div>
-				<?php endforeach ?>
-
-				<div class="divider-summary"></div>
-				<div class="item item-expense row">
-					<div class="icon-item col-md-2 col-sm-2 col-xs-4">
-						<!-- <i class="fa fa-cutlery"></i> -->
-					</div>
-					<div class="cat-item col-md-4 col-sm-4 col-xs-8 row">
-						<div class="cat">Tổng cộng</div>
-						<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
-					</div>
-					<div class="money expense col-md-6 col-sm-6 col-xs-12" ><?php echo (number_format($total,0,",","."));?> đ</div>
-				</div>
-				<!-- </a> -->
-			</div>
-		</div>
-	</div>
-<?php else: ?>
+<?php if ($data_expense==NULL&&$data_income==NULL): ?>
 	<div class="callout callout-warning">
 		<h4><?php echo "Không có dữ liệu" ?></h4>
 	</div>
 <?php endif ?>
+<div class="row two-chart-box">
+	<div class="col-md-6 income-chart-box">	
+		<h3 class="box-title">Income</h3>
+		<div id="income-donut-chart" style="height: 300px;"></div>
+		<!-- <?php var_dump($data_income); ?> -->
+		<div class="item-transaction row">
+
+			<?php $total=0; ?>
+			<?php foreach ($data_income as $income): ?>
+				<?php $total+=(int)$income['money']; ?>
+				<div class="item item-income row">
+					<div class="icon-item col-md-2 col-sm-2 col-xs-4">
+						<i class="fa <?php echo $income['icon']; ?>"></i>
+					</div>
+					<div class="cat-item col-md-5 col-sm-5 col-xs-8 row">
+						<div class="cat"><?php echo($income['category_name']); ?></div>
+						<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
+					</div>
+					<div class="money income col-md-5 col-sm-5 col-xs-12" ><?php echo (number_format($income['money'],0,",","."));?> đ</div>
+				</div>
+			<?php endforeach ?>
+
+			<div class="divider-summary"></div>
+			<div class="item item-expense row">
+				<div class="icon-item col-md-2 col-sm-2 col-xs-4">
+					<!-- <i class="fa fa-cutlery"></i> -->
+				</div>
+				<div class="cat-item col-md-5 col-sm-5 col-xs-8 row">
+					<div class="cat">Tổng cộng</div>
+					<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
+				</div>
+				<div class="money income col-md-5 col-sm-5 col-xs-12" ><?php echo (number_format($total,0,",","."));?> đ</div>
+			</div>
+			<!-- </a> -->
+		</div>
+	</div>
+	<div class="col-md-6 expense-chart-box">
+		<h3 class="box-title">Expense</h3>	
+		<div id="expense-donut-chart" style="height: 300px;"></div>
+		<div class="item-transaction row">
+			<?php $total=0; ?>
+			<?php foreach ($data_expense as $expense): ?>
+				<?php $total+=(int)$expense['money']; ?>
+				<div class="item item-expense row">
+					<div class="icon-item col-md-2 col-sm-2 col-xs-4">
+						<i class="fa <?php echo $expense['icon']; ?>"></i>
+					</div>
+					<div class="cat-item col-md-4 col-sm-4 col-xs-8 row">
+						<div class="cat"><?php echo($expense['category_name']); ?></div>
+						<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
+					</div>
+					<div class="money expense col-md-6 col-sm-6 col-xs-12" ><?php echo (number_format($expense['money'],0,",","."));?> đ</div>
+				</div>
+			<?php endforeach ?>
+
+			<div class="divider-summary"></div>
+			<div class="item item-expense row">
+				<div class="icon-item col-md-2 col-sm-2 col-xs-4">
+					<!-- <i class="fa fa-cutlery"></i> -->
+				</div>
+				<div class="cat-item col-md-4 col-sm-4 col-xs-8 row">
+					<div class="cat">Tổng cộng</div>
+					<!-- <div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div> -->
+				</div>
+				<div class="money expense col-md-6 col-sm-6 col-xs-12" ><?php echo (number_format($total,0,",","."));?> đ</div>
+			</div>
+			<!-- </a> -->
+		</div>
+	</div>
+</div>
+
 </div>
 <script>	
 var mm = <?php echo $month_select; ?>; //January is 0!
@@ -122,25 +120,25 @@ document.getElementById("datepicker").value = today;
      * DONUT CHART
      * -----------
      */
-     var donutData = [
-     { "label": 'Ăn uống', "data": '40' },
-     { "label": 'Series3', "data": '20' },
-     { "label": 'Series3', "data": '20' },
-     { "label": 'Series4', "data": 10 }	
-     ]
-     var expenseData=<?php 
-     foreach ($data_expense as $expense) {
-     	$donut_expense_data[]=array("label"=>$expense['category_name'],"data"=>$expense['money']);
-     }
-     echo json_encode($donut_expense_data);
-     ?>
 
-     var incomeData=<?php 
-     foreach ($data_income as $income) {
-     	$donut_income_data[]=array("label"=>$income['category_name'],"data"=>$income['money']);
-     }
-     echo json_encode($donut_income_data);
-     ?>
+     var expenseData=<?php 
+     $donut_expense_data=array();
+     if ($data_expense!=NULL) {
+     	foreach ($data_expense as $expense) {
+     		$donut_expense_data[]=array("label"=>$expense['category_name'],"data"=>$expense['money'],"legendText");
+     	}}
+     	echo json_encode($donut_expense_data);
+     	?>
+
+     	var incomeData=<?php 
+     	$donut_income_data=array();
+     	if ($data_income!=NULL) {
+     		foreach ($data_income as $income) {
+     			$donut_income_data[]=array("label"=>$income['category_name'],"data"=>$income['money']);
+     		}
+     	}
+     	echo json_encode($donut_income_data);
+     	?>
      // <?php 
      // 	foreach ($data_expense as $expense) {
      // 		$donut_expense_data[]=array("label"=>$expense['category_name'],"data"=$expense['money']);
@@ -154,10 +152,10 @@ document.getElementById("datepicker").value = today;
      		pie: {
      			show       : true,
      			radius     : 1,
-     			innerRadius: 0.2,
+     			innerRadius: 0.4,
      			label      : {
      				show     : true,
-     				radius   : 2 / 3,
+     				radius   : 5/7,
      				formatter: labelFormatter,
      				threshold: 0.1
      			}
@@ -165,7 +163,9 @@ document.getElementById("datepicker").value = today;
      		}
      	},
      	legend: {
-     		show: false
+     		labelBoxBorderColor: "none",
+     		verticalAlign: "center", 
+			horizontalAlign: "right",
      	}
      })
      $.plot('#income-donut-chart', incomeData, {
@@ -173,10 +173,10 @@ document.getElementById("datepicker").value = today;
      		pie: {
      			show       : true,
      			radius     : 1,
-     			innerRadius: 0.2,
+     			innerRadius: 0.4,
      			label      : {
      				show     : true,
-     				radius   : 2 / 3,
+     				radius   : 5/7,
      				formatter: labelFormatter,
      				threshold: 0.1
      			}
@@ -184,7 +184,10 @@ document.getElementById("datepicker").value = today;
      		}
      	},
      	legend: {
-     		show: false
+     		labelBoxBorderColor: "none",
+     		verticalAlign: "center", 
+			horizontalAlign: "right",
+
      	}
      })
     /*
@@ -203,5 +206,4 @@ document.getElementById("datepicker").value = today;
    	+ '<br>'
    	+ Math.round(series.percent) + '%</div>'
    }
-
 </script>

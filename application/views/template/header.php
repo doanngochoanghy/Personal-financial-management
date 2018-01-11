@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
               <ul class="nav navbar-nav">
                 <li class=""><a href="<?php echo(base_url()); ?>Report">Report<span class="sr-only"></span></a></li>
-                <li><a href="#">Budget</a></li>
+                <li><a href="<?php echo(base_url());?>Budget">Budget<span class="sr-only"></span></a></li>
               </ul>
 
             </div>

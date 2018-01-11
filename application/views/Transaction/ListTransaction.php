@@ -117,7 +117,7 @@
 								<i class="fa <?php echo ($expense['icon']);?>"></i>
 							</div>
 							<div class="cat-item col-md-6 col-sm-6 col-xs-8 row">
-								<div class="cat col-md-6 col-sm-6 col-xs-8"><?php echo($expense['Category_Name']); ?></div>
+								<div class="cat col-md-6 col-sm-6 col-xs-8"><?php echo($expense['category_name']); ?></div>
 								<div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($expense['note']); ?></div>
 							</div>
 							<div class="money expense col-md-4 col-sm-4 col-xs-12" ><?php echo (number_format($expense['money'],0,",","."));?> đ</div>
@@ -131,7 +131,7 @@
 								<i class="fa <?php echo ($income['icon']);?>" ></i>
 							</div>
 							<div class="cat-item col-md-6 col-sm-6 col-xs-8 row" style="justify-content: center;">
-								<div class="cat col-md-6 col-sm-6 col-xs-8"><?php echo($income['Category_Name']); ?></div>
+								<div class="cat col-md-6 col-sm-6 col-xs-8"><?php echo($income['category_name']); ?></div>
 								<div class="note col-md-6 col-sm-6 col-xs-4"><?php echo($income['note']); ?></div>
 							</div>
 							<div class="money income col-md-4 col-sm-4 col-xs-12"><?php echo (number_format($income['money'],0,",","."));?> đ</div>
