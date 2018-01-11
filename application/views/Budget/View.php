@@ -16,7 +16,7 @@
           <input type="hidden" name="user_id" value="<?php echo $budget['user_id']; ?>">
           <input type="hidden" name="budget_id" value="<?php echo $budget['budget_id']; ?>">
           <div class="col-xs-3">
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa giao dịch này không?');"><span style="font-size: 20px;"><i class="fa fa-trash"></i></span></button>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa ngân sách này không?');"><span style="font-size: 20px;"><i class="fa fa-trash"></i></span></button>
           </div>
         </form>
       </div>

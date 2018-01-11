@@ -116,7 +116,7 @@
         </nav>
       </header>
       <!-- Full Width Column -->
-      <div class="content-wrapper" style="background-image: url('https://static.pexels.com/photos/9660/business-money-pink-coins.jpg'); background-size: cover; background-attachment: fixed;">
+      <div class="content-wrapper" style="background-image: url('<?php echo base_url();?>/dist/img/background.jpg'); background-size: cover; background-attachment: fixed;">
         <div class="container">
 
 
@@ -144,6 +144,7 @@
                     <img class="profile-user-img img-responsive img-circle" src="http://localhost/QLTCCN/dist/img/user.png" alt="User profile picture">
                     <form method="post" action="<?php echo base_url()?>Users/ChangeWallet">
                       <div class="form-group"><h3 class="profile-username text-center"><?php echo($this->session->userdata('username')) ?></h3>
+                        <label for="">Số tiền hiện tại:</label>
                         <input type="number" class="form-control input-lg" style="text-align: center; background-color: white; color: black" name="wallet" value="<?php echo ($this->session->userdata('wallet'));?>" lang="en-150" ></input></div>
                         <div class="row">
                           <div class="col-md-4"></div>

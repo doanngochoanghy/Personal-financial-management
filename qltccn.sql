@@ -1,9 +1,10 @@
+﻿CREATE DATABASE qltccn;
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 11, 2018 lúc 08:02 AM
+-- Thời gian đã tạo: Th1 11, 2018 lúc 04:33 PM
 -- Phiên bản máy phục vụ: 10.1.25-MariaDB
 -- Phiên bản PHP: 5.6.31
 
@@ -33,16 +34,19 @@ CREATE TABLE `budget` (
   `time` date NOT NULL,
   `budget_money` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
-  `category_id` int(10) NOT NULL
+  `category_id` int(10) NOT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `budget`
 --
 
-INSERT INTO `budget` (`budget_id`, `time`, `budget_money`, `user_id`, `category_id`) VALUES
-(1, '2018-01-00', 1000000, 1, 8),
-(2, '2018-01-00', 2000000, 1, 7);
+INSERT INTO `budget` (`budget_id`, `time`, `budget_money`, `user_id`, `category_id`, `note`) VALUES
+(2, '2018-01-01', 2000000, 1, 10, ''),
+(3, '2018-01-01', 2000000, 1, 11, ''),
+(4, '2018-01-01', 300000, 1, 12, ''),
+(6, '2018-01-01', 300000, 2, 11, '');
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,7 @@ INSERT INTO `expense` (`expense_id`, `user_id`, `time`, `category_id`, `money`, 
 (19, 1, '2018-02-02', 7, 300000, ''),
 (21, 1, '2018-01-10', 7, 50000, ''),
 (22, 1, '2018-01-10', 14, 456000, ''),
-(25, 1, '2018-01-11', 6, 50000, ''),
+(25, 1, '2018-01-11', 6, 50000, 'Tiền internet'),
 (30, 1, '2018-01-11', 11, 300000, ''),
 (33, 3, '2018-01-11', 11, 10, ''),
 (35, 1, '2018-02-02', 6, 300000, ''),
@@ -114,7 +118,9 @@ INSERT INTO `expense` (`expense_id`, `user_id`, `time`, `category_id`, `money`, 
 (37, 1, '2018-02-07', 9, 300000, ''),
 (38, 1, '2018-02-09', 12, 300000, ''),
 (41, 1, '2018-02-08', 14, 300000, ''),
-(42, 1, '2018-01-11', 8, 1000000, '');
+(42, 1, '2018-01-11', 8, 1000000, ''),
+(43, 1, '2018-02-07', 8, 10000, ''),
+(44, 1, '2018-01-12', 12, 300000, '');
 
 -- --------------------------------------------------------
 
@@ -138,7 +144,6 @@ CREATE TABLE `income` (
 INSERT INTO `income` (`income_id`, `time`, `category_id`, `money`, `note`, `user_id`) VALUES
 (4, '2018-01-07', 15, 3000000, '', 1),
 (6, '2018-01-11', 15, 4000000, '', 1),
-(7, '2018-01-12', 16, 300000, '123', 2),
 (8, '2018-01-11', 17, 3000000, '', 1),
 (10, '2018-01-10', 15, 3000000, '123', 1),
 (11, '2018-01-11', 15, 4000000, '', 1),
@@ -163,8 +168,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `wallet`) VALUES
-(1, 'hoangdn', 'c4ca4238a0b923820dcc509a6f75849b', 9729112),
-(2, 'trung', '202cb962ac59075b964b07152d234b70', 300000),
+(1, 'hoangdn', '202cb962ac59075b964b07152d234b70', 9419112),
+(2, 'trung', '202cb962ac59075b964b07152d234b70', 0),
 (3, 'user1', 'c4ca4238a0b923820dcc509a6f75849b', 299990);
 
 --
@@ -209,17 +214,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `budget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `category_id` int(3) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT cho bảng `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `expense_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `expense_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT cho bảng `income`
 --
@@ -229,7 +234,7 @@ ALTER TABLE `income`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
