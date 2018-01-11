@@ -5,7 +5,7 @@
   <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
+        <b>Version</b> 1.0.0
       </div>
       <strong>Đồ án I.</strong> Nhóm sinh viên: <b>Đoàn Ngọc Hoàng</b>,<b>Trần Bảo Trung.</b> Lớp: <b><a href="https://www.facebook.com/groups/1438668266217377/">KSTN Toán Tin K59</a></b>
     </div>
@@ -43,6 +43,11 @@
     $('#timepicker').datepicker({
     autoclose: true,
     format: 'yyyy-mm-dd'
+})
+    $('#monthpicker').datepicker({
+    autoclose: true,
+    minViewMode: 1,
+    format: 'yyyy-mm'
 })
 </script>
 </body>

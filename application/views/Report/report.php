@@ -1,3 +1,6 @@
+<script>
+	document.getElementById("buttonReport").setAttribute("class", "active");
+</script>
 <div class="row">
 	<div class="col-md-4 col-sm-3 col-xs-2 "></div>
 	<div class=" form-group col-md-4 col-sm-6 col-xs-8">
@@ -22,7 +25,7 @@
 </div>
 <?php if ($data_expense==NULL&&$data_income==NULL): ?>
 	<div class="callout callout-warning">
-		<h4><?php echo "Không có dữ liệu" ?></h4>
+		<h4><?php echo "Không có dữ liệu giao dịch trong tháng ".$month_select.'-'.$year_select; ?></h4>
 	</div>
 <?php endif ?>
 <div class="row two-chart-box">

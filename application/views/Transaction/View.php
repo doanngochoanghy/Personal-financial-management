@@ -1,3 +1,6 @@
+<script>
+  document.getElementById("buttonTransaction").setAttribute("class", "active");
+</script>
 <div class="">
   <div class="login-logo">
     <b>Edit transaction</b>

@@ -10,7 +10,9 @@ class Home extends CI_Controller {
 			$user_data=array($user_data);
 			$this->session->set_userdata( $user_data[0]);
 			// var_dump($this->session->userdata());
-			redirect(base_url().'Transaction','');
+			// redirect(base_url().'Transaction','');
+			$this->load->view('template/header');	
+			$this->load->view('template/footer');
 		}
 		else{
 			redirect(base_url().'Users/Login');

@@ -24,6 +24,32 @@ class Budget_model extends CI_Model {
 		$query=$this->db->get('expense');
 		return (int)$query->result_array()[0]['money'];
 	}
+	public function Get_Budget_By_id($budget_id)
+	{
+		$this->db->flush_cache();
+		$this->db->where('budget_id', $budget_id);
+		$query=$this->db->get('budget');
+		return $query->row_array();
+	}
+	public function Delete($user_id,$budget_id)
+	{
+		$this->db->flush_cache();
+		$this->db->where('budget_id', $budget_id);
+		$this->db->where('user_id', $user_id);
+		$this->db->delete('budget');
+	}
+	public function Change($budget)
+	{
+		$this->db->flush_cache();
+		$this->db->where('budget_id', $budget['budget_id']);
+		$this->db->where('user_id', $budget['user_id']);
+		$this->db->update('budget', array('budget_money' => $budget['budget_money'],'time' => $budget['time'],'note' => $budget['note'],'category_id' => $budget['category_id'] ));
+	}
+	public function Add($budget)
+	{
+		$this->db->flush_cache();
+		$this->db->insert('budget', $budget);
+	}
 }
 
 /* End of file budget_model.php */

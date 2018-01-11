@@ -37,7 +37,9 @@ class Transaction extends CI_Controller {
 	{
 		$user_id=$this->input->post('user_id');
 		if ($user_id==$this->session->userdata('user_id')) {
-			$this->transaction_model->Add_Transaction($this->input->post());
+			$data=$this->input->post();
+			$data['note']=htmlspecialchars($this->input->post('note'),ENT_QUOTES);
+			$this->transaction_model->Add_Transaction($data);
 		}
 		$this->session->set_flashdata('message', 'The transaction has added successful!');
 		redirect(base_url()."Transaction");

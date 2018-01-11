@@ -1,3 +1,6 @@
+<script>
+	document.getElementById("buttonTransaction").setAttribute("class", "active");
+</script>
 <button class="btn btn-lg btn-info" data-toggle="modal" data-target="#addTransaction" style="border-radius: 50%;float: right;">
 	<i class="fa fa-plus"></i>
 </button>
@@ -93,7 +96,7 @@
 </div>
 <?php if (count($dates)==0): ?>
 	<div class="callout callout-warning">
-		<h4><?php echo "Không có dữ liệu" ?></h4>
+		<h4><?php echo "Không có giao dịch nào trong tháng ".$month_select.'-'.$year_select; ?></h4>
 	</div>
 <?php endif ?>
 <?php foreach ($dates as $key => $date_value): ?>
