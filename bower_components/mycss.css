@@ -1,0 +1,96 @@
+.date {
+	background-color: #00acd6;
+	font-size: 25px;
+	margin-right: 0;
+	margin-left: 0;
+	padding-left: 5px;
+}
+.date-view{
+	margin-bottom: 20px;	
+}
+.item-transaction{
+	background-color: white;
+}
+.item:hover{
+	background-color: rgb(211, 216, 222);
+}
+.item{
+	display: block;
+	background-color: white;
+	padding: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.item .icon-item
+{
+	font-size: 40px;
+	color: #0012ff;
+}
+.item img
+{
+	height: 50px;
+	width: 50px;
+	margin-right: 10px;	
+	margin-left: 5px;	
+	margin-top: 5px;	
+	margin-bottom: 5px;	
+	font-size: -webkit-xxx-large;
+	display: inline;
+}
+.cat-item{
+	display: inline;
+}
+.cat{
+	font-size: 24px;
+	font-weight: bold;
+	color: black;
+	position: relative;
+	top: 10px;
+}
+.note{
+	color: black;
+	position: relative;
+	top: 20px;
+}
+.money	{
+	float: right;
+	font-size: 28px;
+	margin-top: 5px;
+	text-align: right;
+}
+.expense{
+	color: red;
+}
+.income{
+	color: green;
+}
+.item-expense{
+	background-color: rgba(255, 28, 0, 0.03);
+}
+.item-income{
+	background-color: rgba(7, 251, 0, 0.03);
+}
+.view-item{
+	background: #fff;
+    padding: 20px;
+    border-top: 0;
+    color: #666;
+    /*width: 650px;*/
+}
+.income-chart-box{
+	background-color: rgba(7, 251, 0, 0.25)
+}
+.expense-chart-box {
+	background-color: rgba(255, 28, 0, 0.27)
+}
+#expense-donut-chart{
+	bottom: 5px;
+}#income-donut-chart{
+	bottom: 5px;
+}
+
+.divider-summary{
+	border:solid 1px gray;
+	margin-left: 25px;
+	margin-right: 25px;
+}

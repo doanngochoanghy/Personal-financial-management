@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link href="<?php echo base_url()?>login-register.css" rel="stylesheet" />
+  
   <link rel="stylesheet" href="<?php echo base_url()?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url()?>bower_components/font-awesome/css/font-awesome.min.css">
@@ -18,6 +18,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url()?>dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="<?php echo base_url()?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +29,8 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link href="<?php echo base_url()?>login-register.css" rel="stylesheet" />
+  <link rel="stylesheet" href="<?php echo base_url()?>bower_components/mycss.css">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -35,220 +38,184 @@
 
     <header class="main-header">
       <nav class="navbar navbar-static-top">
-        <div class="container">
+        <div class="container" style="grid-auto-rows: 1fr;">
           <div class="navbar-header">
-            <a href="<?php echo base_url()?>" class="navbar-brand">Money Manager
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                <i class="fa fa-bars"></i>
-              </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <?php if ($this->session->userdata('loggedin')): ?>
-              <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                <ul class="nav navbar-nav">
-                  <li class=""><a href="#">Transaction<span class="sr-only"></span></a></li>
-                  <li><a href="#">Report</a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">One more separated link</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.navbar-collapse -->
-              <!-- Navbar Right Menu -->
-              <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                  <li class="dropdown user user-menu">
-                    <!-- Menu Toggle Button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <!-- The user image in the navbar-->
-                      <img src="<?php echo base_url()?>dist/img/user.png" class="user-image" alt="User Image">
-                      <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                      <span class="hidden-xs"><?php echo($this->session->userdata('username')) ?></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <!-- The user image in the menu -->
-                      <li class="user-header">
-                        <img src="<?php echo base_url()?>dist/img/user.png" class="img-circle" alt="User Image">
-                        <p><?php echo $this->session->userdata('username')?></p>
-                      </li>
-                      <!-- Menu Footer-->
-                      <li class="user-footer">
-                        <div class="pull-left">
-                          <a href="#" class="btn btn-info btn-flat">Profile</a>
-                        </div>
-                        <div class="pull-right">
-                          <a href="<?php echo base_url();?>Users/Logout" class="btn btn-warning btn-flat">Sign out</a>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            <?php else: ?>
-              <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                  <li class="dropdown user user-menu">
-                    <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-
-                  </li>
-                  <li>
-                    <a href="#" data-toggle="modal" data-target="#registerModal">Register</a>
-                  </li>
-                </ul>
-              </div>
-            <?php endif ?>
-            <!-- /.navbar-custom-menu -->
+            <a href="<?php echo base_url()?>" class="navbar-brand">Money Manager</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
           </div>
-          <!-- /.container-fluid -->
-        </nav>
-      </header>
-      <!-- Full Width Column -->
-      <div class="content-wrapper">
-        <div class="container">
 
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <?php if ($this->session->userdata('loggedin')): ?>
+            <?php 
+            $wallet=$this->transaction_model->GetMoney($this->session->userdata('user_id'));
+            $array = array(
+              'wallet' => $wallet
+            );
+            
+            $this->session->set_userdata( $array );?>
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class=""><a href="<?php echo(base_url()); ?>Report">Report<span class="sr-only"></span></a></li>
+                <li><a href="#">Budget</a></li>
+              </ul>
 
-         <!-- Content Header (Page header) -->
-         <section class="content-header">
-          <?php if ($this->session->flashdata('message')): ?>
-            <div class="alert alert-dismissible alert-warning">
-              <p>
-                <?php echo $this->session->flashdata('message'); ?>
-              </p>
             </div>
-          <?php endif; ?>
-          <?php echo validation_errors('<div class="alert alert-dismissible alert-danger">','</div>'); ?>
-          <!-- Modal Login -->
-          <div class="modal fade login" id="loginModal">
-            <div class="modal-dialog login animated">
-              <div class="modal-content">
-               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Login with</h4>
-              </div>
-              <div class="modal-body">  
-                <div class="box">
-                 <div class="content">
-                  <div class="social">
-                    <a class="circle github" href="/auth/github">
-                      <i class="fa fa-github fa-fw"></i>
-                    </a>
-                    <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                      <i class="fa fa-google-plus fa-fw"></i>
-                    </a>
-                    <a id="facebook_login" class="circle facebook" href="/auth/facebook">
-                      <i class="fa fa-facebook fa-fw"></i>
-                    </a>
-                  </div>
-                  <div class="division">
-                    <div class="line l"></div>
-                    <span>or</span>
-                    <div class="line r"></div>
-                  </div>
-                  <div class="error"></div>
-                  <div class="form loginBox">
-                    <form method="post" action="<?php echo base_url();?>Users/Login" accept-charset="UTF-8">
-                      <input id="username" class="form-control" type="text" placeholder="Username" name="username" required="">
-                      <input id="password" class="form-control" type="password" placeholder="Password" name="password" required="">
-                      <button class="btn-login" type="submit">Login</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+            <!-- /.navbar-collapse -->
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                  <!-- Menu Toggle Button -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- The user image in the navbar-->
+                    <img src="<?php echo base_url()?>dist/img/user.png" class="user-image" alt="User Image">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    <span class="hidden-xs"><?php echo($this->session->userdata('username')) ?></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- The user image in the menu -->
+                    <li class="user-header">
+                      <img src="<?php echo base_url()?>dist/img/user.png" class="img-circle" alt="User Image">
+
+                      <p class="profile-username text-center"><?php echo $this->session->userdata('username');?></p>
+                      <p><?php echo(number_format($this->session->userdata('wallet'),0,",",".")); ?>₫ </p>
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a href="#" class="btn btn-info btn-flat" data-toggle="modal" data-target="#profileModal">Profile</a>
+                      </div>
+                      
+                      <div class="pull-right">
+                        <a href="<?php echo base_url();?>Users/Logout" class="btn btn-warning btn-flat">Sign out</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-            <div class="modal-footer">
-              <div class="forgot login-footer">
-                <span>Looking to 
-                  <a href="#" data-toggle="modal" data-target="#registerModal">create an account</a>?</span>
-                </div>
-              </div>        
+          <?php else: ?>
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#registerModal">Register</a>
+                </li>
+              </ul>
             </div>
-          </div>
+          <?php endif ?>
+          <!-- /.navbar-custom-menu -->
         </div>
-        <!-- Modal Register -->
-        <div class="modal fade login" id="registerModal">
+        <!-- /.container-fluid -->
+      </nav>
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper" style="background-image: url('https://static.pexels.com/photos/9660/business-money-pink-coins.jpg'); background-size: contain; background-attachment: fixed;">
+      <div class="container">
+
+
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+        <?php if ($this->session->flashdata('message')): ?>
+          <div class="alert alert-dismissible alert-warning">
+            <p>
+              <?php echo $this->session->flashdata('message'); ?>
+            </p>
+          </div>
+        <?php endif; ?>
+        <?php echo validation_errors('<div class="alert alert-dismissible alert-danger">','</div>'); ?>
+        <div class="modal login fade" id="profileModal">
           <div class="modal-dialog login animated">
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Register</h4>
-              </div>
-              <div class="modal-body">  
-                <div class="box">
-                  <div class="content registerBox">
-                    <div class="social">
-                      <a class="circle github" href="/auth/github">
-                        <i class="fa fa-github fa-fw"></i>
-                      </a>
-                      <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                        <i class="fa fa-google-plus fa-fw"></i>
-                      </a>
-                      <a id="facebook_login" class="circle facebook" href="/auth/facebook">
-                        <i class="fa fa-facebook fa-fw"></i>
-                      </a>
-                    </div>
-                    <div class="division">
-                      <div class="line l"></div>
-                      <span>or</span>
-                      <div class="line r"></div>
-                    </div>
-                    <div class="error"></div>
-                    <div class="form">
-                      <form method="post" action="<?php echo base_url();?>Users/Register" accept-charset="UTF-8">
-                        <input class="form-control" type="text" placeholder="Email" name="username" required="">
-                        <input id="password" class="form-control" type="password" placeholder="Password" name="password" required="">
-                        <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required="">
-                        <button class="btn-register" type="submit">Register</button>
-                      </form>
-                    </div>
-                  </div>
+             <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">User Profile</h4>
+            </div>
+            <div class="modal-body">  
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <div class="btn btn-info btn-flat fa fa-pencil" data-toggle="modal" data-target="#changePasswordModal"><span><i href="#" ></i></span> Password</div>
+                  <img class="profile-user-img img-responsive img-circle" src="http://localhost/QLTCCN/dist/img/user.png" alt="User profile picture">
+                  <form method="post" action="<?php echo base_url()?>Users/ChangeWallet">
+                    <div class="form-group"><h3 class="profile-username text-center"><?php echo($this->session->userdata('username')) ?></h3>
+                                        <input type="number" class="form-control input-lg" style="text-align: center; background-color: white; color: black" name="wallet" value="<?php echo ($this->session->userdata('wallet'));?>" lang="en-150" ></input></div>
+                    <div class="row">
+                          <div class="col-md-4"></div>
+                          <button class="btn btn-primary btn-flat col-md-4"><b>Save</b>
+                          </button>
+                          <div class=" col-md-4 pull-left">
+                      </div>
+                          </div>
+                  </form>
+                  
                 </div>
+                <!-- /.box-body -->
               </div>
-              <div class="modal-footer">
-               <div class="forgot register-footer">
-                 <span>Already have an account?</span>
-                 <a href="#" data-toggle="modal" data-target="#loginModal #registerModal">Login</a>
-               </div>
-             </div>        
-           </div>
-         </div>
-       </div>
-     </section>
-
-     <!-- Main content -->
-     <section class="content">
-      <div class="callout callout-info">
-        <h4>Tip!</h4>
-
-        <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-          sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-          links instead.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="forgot login-footer">
+              <span>Looking to 
+                <a href="#" data-toggle="modal" data-target="#registerModal">create an account</a>?</span>
+              </div>
+            </div>        
+          </div>
         </div>
-        <div class="callout callout-danger">
-          <h4>Warning!</h4>
-
-          <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-            and the content will slightly differ than that of the normal layout.</p>
+        <div class="modal fade login" id="changePasswordModal">
+          <div class="modal-dialog login animated">
+              <div class="modal-content">
+                 <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Change password</h4>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="box">
+                             <div class="content">
+                                
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                    <form method="post" action="<?php echo base_url(); ?>Users/ChangePassword" accept-charset="UTF-8">
+                                    <div class="form-group"><input name="old_password" class="form-control" type="password" placeholder="Old password" required=""></div>
+                                    <div class="form-group"><input name="new_password" class="form-control" type="password" placeholder="New password" required=""></div>
+                                    <div class="form-group"><input name="new_password_confirm" class="form-control" type="password" placeholder="Confirm new password" required=""></div>
+                                    <button type="submit" class="btn btn-warning btn-flat btn-block">Change password</button>
+                                    </form>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox" style="display:none;">
+                             <div class="form">
+                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+              </div>
           </div>
-          <div class="box box-default">
-            <div class="box-header with-border">
-              <h3 class="box-title">Blank Box</h3>
-            </div>
-            <div class="box-body">
-              The great content goes here
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </section>
-        <!-- /.content -->
       </div>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+      <?php if ($this->session->userdata('loggedin')): ?>
+        <div class="row">
+          <div class="col-md-4 col-sm-3 col-xs-2"></div>
+          <a href="#" class="alert alert-dismissible alert-success col-xs-8 col-md-4 col-sm-6 offset-md-4" data-toggle="modal" data-target="#profileModal">
+            <h3 class="text-center"><?php echo(number_format($this->session->userdata('wallet'),0,",",".")); ?> ₫</h3>
+          </a>
+          <div class="col-md-4 col-sm-3 col-xs-2"></div>
+        </div>
+      <?php endif ?>
+        <!-- /.content -->
+

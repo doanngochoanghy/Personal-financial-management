@@ -5,14 +5,22 @@ class Users_model extends CI_Model {
 	public function login($username,$password)
 	{
 		$this->db->flush_cache();
-		$this->db->select('user_id,username');
-		$query=$this->db->get_where('users',array('username' =>$username ,'password'=>$password ));
+		$this->db->select('user_id,username,wallet');
+		$query=$this->db->get_where('users',array('username' =>$username ,'password'=>$password));
+		// return $this->db->get_compiled_select();
 		if (!empty($query->row_array())) {
 			return $query->row(0);
 		} else {
 			return false;
 		}
 		
+	}
+	public function GetUser($user_id)
+	{
+		$this->db->flush_cache();
+		$this->db->select('user_id,username,wallet');
+		$query=$this->db->get_where('users',array("user_id"=>$user_id));
+		return $query->row_array();
 	}
 	public function register($data)
 	{
@@ -38,9 +46,22 @@ class Users_model extends CI_Model {
 	{
 		$this->db->flush_cache();
 		$this->db->where('user_id', $user_id);
-		$this->db->update('users', $change_data);	}
-	}
+		$this->db->update('users', $change_data);	
 
+	}
+	
+	public function ChangeWallet($user_id,$wallet)
+	{
+		$this->db->flush_cache();
+		$this->db->where('user_id', $user_id);
+		$this->db->update('users', array('wallet' => $wallet));
+	}
+public function ChangePassword($username,$password)
+{
+	$this->db->flush_cache();
+	$this->db->where('username', $username);
+	$this->db->update('users', array('password'=>$password));
+}}
 
 	/* End of file Users_model.php */
 /* Location: ./application/models/Users_model.php */
