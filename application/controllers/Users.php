@@ -96,8 +96,8 @@ class Users extends CI_Controller {
 			// var_dump($check);
 			if ($check!=FALSE) {
 				$this->users_model->ChangePassword($username,$new_password);
-			}
 			$this->session->set_flashdata('message', 'Your password was changed!');
+		}
 			redirect(base_url()."Transaction");
 			// $data = array('username' => htmlspecialchars($this->input->post('username'),ENT_QUOTES),'password' => md5($this->input->post('password')),
 			// 	);
